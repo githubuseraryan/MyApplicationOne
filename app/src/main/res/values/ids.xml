@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="toggle_flashlight" type="id" />
+    <item name="Button2" type="id"/>
+    <item name="TextView3" type="id"/>
+</resources>
