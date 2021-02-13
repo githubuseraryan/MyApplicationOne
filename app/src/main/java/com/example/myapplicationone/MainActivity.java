@@ -3,12 +3,15 @@ package com.example.myapplicationone;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -44,26 +47,26 @@ public class MainActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                try {
-                    cameraManager.setTorchMode(cameraId, isChecked);
-                } catch (CameraAccessException e) {
-                    e.printStackTrace();
-                }
+            try {
+                cameraManager.setTorchMode(cameraId, isChecked);
+            } catch (CameraAccessException e) {
+                e.printStackTrace();
+            }
             }
         });
 
-        toggleFlashBtn.setOnClickListener(new CompoundButton.OnClickListener() {
+        // ACTIONS FOR BUTTON ID: Button3
+
+        ToggleButton toggleDarkModeButton = findViewById(R.id.Button3);
+        toggleDarkModeButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
-            public void onClick(View v) {
-                switch (getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) {
-
-                    case Configuration.UI_MODE_NIGHT_YES:
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                        break;
-
-                    case Configuration.UI_MODE_NIGHT_NO:
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                        break;
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                RelativeLayout rootView = findViewById(R.id.mainLayout);
+                if(isChecked) {
+                    rootView.setBackgroundColor(0xFF363229);
+                } else {
+                    rootView.setBackgroundColor(0xFFCDDC39);
                 }
             }
         });
