@@ -1,15 +1,17 @@
 package com.example.myapplicationone;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -18,9 +20,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 public class MainActivity extends AppCompatActivity {
-    private ToggleButton TglbtnFlsh;
-    private CameraManager CmraMngr;
-    private String CmraId;
+    private CameraManager cameraManager;
+    private String cameraId;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -28,43 +29,44 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Boolean isFlashAvailable = getApplicationContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
+        boolean isFlashAvailable = getApplicationContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
         if (!isFlashAvailable)
             noFlashAvailableError();
 
-        CmraMngr = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
+        cameraManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
         try {
-            CmraId = CmraMngr.getCameraIdList()[0];
+            cameraId = cameraManager.getCameraIdList()[0];
         } catch (CameraAccessException q) {
             q.printStackTrace();
         }
 
+        // ACTIONS FOR BUTTON ID: Button2
 
-        ToggleButton TglbtnFlsh = findViewById(R.id.Button2);
-        TglbtnFlsh.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        ToggleButton toggleFlashBtn = findViewById(R.id.Button2);
+        toggleFlashBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                try {
-                    CmraMngr.setTorchMode(CmraId, isChecked);
-                } catch (CameraAccessException e) {
-                    e.printStackTrace();
-                }
+            try {
+                cameraManager.setTorchMode(cameraId, isChecked);
+            } catch (CameraAccessException e) {
+                e.printStackTrace();
+            }
             }
         });
 
-        TglbtnFlsh.setOnClickListener(new CompoundButton.OnClickListener() {
+        // ACTIONS FOR BUTTON ID: Button3
+
+        ToggleButton toggleDarkModeButton = findViewById(R.id.Button3);
+        toggleDarkModeButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
-            public void onClick(View v) {
-                switch (getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) {
-
-                    case Configuration.UI_MODE_NIGHT_YES:
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                        break;
-
-                    case Configuration.UI_MODE_NIGHT_NO:
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                        break;
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                RelativeLayout rootView = findViewById(R.id.mainLayout);
+                if(isChecked) {
+                    rootView.setBackgroundColor(0xFF363229);
+                } else {
+                    rootView.setBackgroundColor(0xFFCDDC39);
                 }
             }
         });
