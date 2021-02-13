@@ -37,9 +37,10 @@ public class MainActivity extends AppCompatActivity {
             q.printStackTrace();
         }
 
+        // ACTIONS FOR BUTTON ID: Button2
 
-        ToggleButton TglbtnFlsh = findViewById(R.id.Button2);
-        TglbtnFlsh.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        ToggleButton toggleFlashBtn = findViewById(R.id.Button2);
+        toggleFlashBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        TglbtnFlsh.setOnClickListener(new CompoundButton.OnClickListener() {
+        toggleFlashBtn.setOnClickListener(new CompoundButton.OnClickListener() {
             @Override
             public void onClick(View v) {
                 switch (getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) {
