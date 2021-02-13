@@ -1,6 +1,5 @@
 package com.example.myapplicationone;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
@@ -18,9 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 public class MainActivity extends AppCompatActivity {
-    private ToggleButton TglbtnFlsh;
-    private CameraManager CmraMngr;
-    private String CmraId;
+    private CameraManager cameraManager;
+    private String cameraId;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -28,13 +26,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Boolean isFlashAvailable = getApplicationContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
+        boolean isFlashAvailable = getApplicationContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
         if (!isFlashAvailable)
             noFlashAvailableError();
 
-        CmraMngr = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
+        cameraManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
         try {
-            CmraId = CmraMngr.getCameraIdList()[0];
+            cameraId = cameraManager.getCameraIdList()[0];
         } catch (CameraAccessException q) {
             q.printStackTrace();
         }
@@ -46,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 try {
-                    CmraMngr.setTorchMode(CmraId, isChecked);
+                    cameraManager.setTorchMode(cameraId, isChecked);
                 } catch (CameraAccessException e) {
                     e.printStackTrace();
                 }
