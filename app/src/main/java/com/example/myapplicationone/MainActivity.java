@@ -95,26 +95,36 @@ public class MainActivity extends AppCompatActivity {
                 TextView rootView3 = findViewById(R.id.textView3);
                 TextView rootView4 = findViewById(R.id.textView4);
                 TextView rootView5 = findViewById(R.id.textView6);
+                TextView rootView6 = findViewById(R.id.textView7);
+                TextView rootView7 = findViewById(R.id.textView8);
                 if (isChecked) {
                     rootView.setBackgroundColor(0xFF363229);
                     rootView2.setBackgroundColor(0xFF363229);
                     rootView3.setBackgroundColor(0xFF363229);
                     rootView4.setBackgroundColor(0xFF363229);
                     rootView5.setBackgroundColor(0xFF363229);
+                    rootView6.setBackgroundColor(0xFF363229);
+                    rootView7.setBackgroundColor(0xFF363229);
                     rootView3.setTextColor(0xFF40E0D0);
                     rootView2.setTextColor(0xFF40E0D0);
                     rootView4.setTextColor(0xFF40E0D0);
                     rootView5.setTextColor(0xFF40E0D0);
+                    rootView6.setTextColor(0xFF40E0D0);
+                    rootView7.setTextColor(0xFF40E0D0);
                 } else {
                     rootView.setBackgroundColor(0xFF40E0D0);
                     rootView2.setBackgroundColor(0xFFF9945E);
                     rootView3.setBackgroundColor(0xFF40E0D0);
                     rootView4.setBackgroundColor(0xFFF9945E);
                     rootView5.setBackgroundColor(0xFFF9945E);
+                    rootView6.setBackgroundColor(0xFFF50B1A);
+                    rootView7.setBackgroundColor(0xFFF50B1A);
                     rootView3.setTextColor(0xFF000204);
                     rootView2.setTextColor(0xFF741111);
                     rootView4.setTextColor(0xFF741111);
                     rootView5.setTextColor(0xFF741111);
+                    rootView6.setTextColor(0xFFFFF7FB);
+                    rootView7.setTextColor(0xFFFFF7FB);
                 }
 
             }
@@ -126,8 +136,8 @@ public class MainActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                blinkFlash(isChecked);
-                /*if (isChecked) {
+
+                if (isChecked) {
                     blinkFlash();
                 } else {
                     try {
@@ -136,10 +146,12 @@ public class MainActivity extends AppCompatActivity {
                     }
                     Toast.makeText(MainActivity.this, "Press the above button first.",
                             Toast.LENGTH_SHORT).show();
-                }*/
+                }
 
             }
+
         });
+        // ACTIONS FOR BUTTON ID: Button5
         ToggleButton toggleSoSModeButton = (ToggleButton) findViewById(R.id.Button5);
         //attach listener with ToggleButton
         toggleSoSModeButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -170,6 +182,7 @@ public class MainActivity extends AppCompatActivity {
                             drawable2.start();
                         }
                     }, 100, TimeUnit.MILLISECONDS);
+
                 } else {
                     ((AnimationDrawable) (rootView.getBackground())).stop();
                     rootView.setBackground(null);
@@ -179,24 +192,71 @@ public class MainActivity extends AppCompatActivity {
                     textView3.setBackgroundColor(0xFF00FFFF);
                 }
             }
+
+        });
+             //Action for Button 6
+       ToggleButton toggleSoSModeButton2 = (ToggleButton) findViewById(R.id.Button6);
+        toggleSoSModeButton2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    blinkSOSFlash();
+                } else {
+                    try {
+                        cameraManager.setTorchMode(cameraId, false);
+                    } catch (CameraAccessException e) {
+                    }
+                    Toast.makeText(MainActivity.this, "Press the above button first.",
+                            Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
         });
 
-        // ACTIONS FOR BUTTON ID: Button3
-
-
     }
+
+
+
+
 
     private void noFlashAvailableError() {
         Toast.makeText(MainActivity.this, "Torch not Available", Toast.LENGTH_SHORT).show();
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
-    private void blinkFlash(boolean isChecked) {
+    private void blinkSOSFlash() {
         try {
             CameraManager cameraManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
             String cameraId = cameraManager.getCameraIdList()[0];
-            String myString = "0101010101010101010101010101010101010101010101010101";
-            long blinkDelay = 50; //Delay in ms
+            String myString = "101010000001010100000010101000000101000000101010000001010100000010101000000101010000001010100000010101000000101010000001010100000010101";
+            long blinkDelay = 89; //Delay in ms
+            for (int i = 0; i < myString.length(); i++) {
+                if (myString.charAt(i) == '0') {
+                    this.cameraManager.setTorchMode(cameraId, true);
+                } else {
+                    this.cameraManager.setTorchMode(cameraId, false);
+                }
+                try {
+                    Thread.sleep(blinkDelay);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        } catch (CameraAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void blinkFlash() {
+        try {
+            CameraManager cameraManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
+            String cameraId = cameraManager.getCameraIdList()[0];
+            String myString = "010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010010101010101010101010101010101010101010101010101010101";
+            long blinkDelay = 150; //Delay in ms
             for (int i = 0; i < myString.length(); i++) {
                 if (myString.charAt(i) == '0') {
                     this.cameraManager.setTorchMode(cameraId, true);
