@@ -194,8 +194,8 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
-             //Action for Button 6
-       ToggleButton toggleSoSModeButton2 = (ToggleButton) findViewById(R.id.Button6);
+        //Action for Button 6
+        ToggleButton toggleSoSModeButton2 = (ToggleButton) findViewById(R.id.Button6);
         toggleSoSModeButton2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
@@ -216,9 +216,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
-
-
 
 
     private void noFlashAvailableError() {

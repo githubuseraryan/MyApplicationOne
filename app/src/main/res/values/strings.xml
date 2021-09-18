@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">My ApplicationOne</string>
     <string name="action_share">Share</string>
+    <string name="advanced_flashlight">Advanced Flashlight</string>
 </resources>
