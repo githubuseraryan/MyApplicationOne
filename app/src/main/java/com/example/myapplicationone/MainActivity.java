@@ -13,6 +13,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private CameraManager cameraManager;
     private String cameraId;
     private ShareActionProvider shareActionProvider;
+    private Button button;
 
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -97,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
                 TextView rootView5 = findViewById(R.id.textView6);
                 TextView rootView6 = findViewById(R.id.textView7);
                 TextView rootView7 = findViewById(R.id.textView8);
+                Button button = findViewById(R.id.button7);
                 if (isChecked) {
                     rootView.setBackgroundColor(0xFF363229);
                     rootView2.setBackgroundColor(0xFF363229);
@@ -105,12 +109,14 @@ public class MainActivity extends AppCompatActivity {
                     rootView5.setBackgroundColor(0xFF363229);
                     rootView6.setBackgroundColor(0xFF363229);
                     rootView7.setBackgroundColor(0xFF363229);
+                    button.setBackgroundColor(0xFF363229);
                     rootView3.setTextColor(0xFF40E0D0);
                     rootView2.setTextColor(0xFF40E0D0);
                     rootView4.setTextColor(0xFF40E0D0);
                     rootView5.setTextColor(0xFF40E0D0);
                     rootView6.setTextColor(0xFF40E0D0);
                     rootView7.setTextColor(0xFF40E0D0);
+                    button.setTextColor(0xFF40E0D0);
                 } else {
                     rootView.setBackgroundColor(0xFF40E0D0);
                     rootView2.setBackgroundColor(0xFFF9945E);
@@ -119,16 +125,26 @@ public class MainActivity extends AppCompatActivity {
                     rootView5.setBackgroundColor(0xFFF9945E);
                     rootView6.setBackgroundColor(0xFFF50B1A);
                     rootView7.setBackgroundColor(0xFFF50B1A);
+                    button.setBackgroundColor(0xFF806D04);
                     rootView3.setTextColor(0xFF000204);
                     rootView2.setTextColor(0xFF741111);
                     rootView4.setTextColor(0xFF741111);
                     rootView5.setTextColor(0xFF741111);
                     rootView6.setTextColor(0xFFFFF7FB);
                     rootView7.setTextColor(0xFFFFF7FB);
+                    button.setTextColor(0xFFFFF7FB);
                 }
 
             }
         });
+        //Action for Button7
+         button = (Button) findViewById(R.id.button7);
+         button.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 openCreditsActivity();
+             }
+         });
 
         // ACTIONS FOR BUTTON ID: Button4
         ToggleButton toggleBlinkBtn = findViewById(R.id.Button4);
@@ -215,6 +231,11 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
+    }
+
+    private void openCreditsActivity() {
+        Intent intent = new Intent(this ,CreditsActivity.class);
+        startActivity(intent);
     }
 
 
