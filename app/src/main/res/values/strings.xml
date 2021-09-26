@@ -11,4 +11,12 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="DOAECC_A_Level">A DOAECC A LEVEL PROJECT</string>
+    <string name="Created_By">Designed and Developed By </string>
+    <string name="My_Name_Text">BARUN DESHMUKHYA</string>
+    <string name="My_Name_URL">https://github.com/githubuseraryan</string>
+    <string name="Guidance_by_Text">Snehashis Chatterjee</string>
+    <string name="Guidance_by_URL">https://github.com/Golden-Dragon</string>
+    <string name="Github_link_Text">GITHUB LINK</string>
+    <string name="Github_link_URL">https://github.com/githubuseraryan/MyApplicationOne</string>
 </resources>

@@ -14,6 +14,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
@@ -23,6 +25,7 @@ import android.widget.ToggleButton;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.ShareActionProvider;
 import androidx.core.view.MenuItemCompat;
 
@@ -41,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         inflater.inflate(R.menu.main_menu, menu);
         MenuItem menuItem = menu.findItem(R.id.action_share);
         shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(menuItem);
-        setShareActionIntent("https://mega.nz/file/lzwmyAyI#j2T-zaIeqqqv55XYppckuCG5j9bpijDdOEt8kBRR-io");
+        setShareActionIntent("https://drive.google.com/drive/u/0/my-drive");
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -58,7 +61,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN); //enable full screen
         setContentView(R.layout.activity_main);
+
 
         boolean isFlashAvailable = getApplicationContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
         if (!isFlashAvailable) {
@@ -138,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         //Action for Button7
-         button = (Button) findViewById(R.id.button7);
+          button =  findViewById(R.id.button7);
          button.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
@@ -233,6 +240,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     private void openCreditsActivity() {
         Intent intent = new Intent(this ,CreditsActivity.class);
         startActivity(intent);

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/CreditLayout"
     android:layout_width="match_parent"
@@ -9,4 +10,123 @@
     tools:ignore="HardcodedText">
 
 
+    <ImageView
+        android:id="@+id/GfG_full_logo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000000"
+        app:srcCompat="@drawable/gitcover" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="657dp"
+        android:text="@string/DOAECC_A_Level"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="#FF5733"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="123dp"
+        android:layout_height="63dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="471dp"
+        android:text="@string/Created_By"
+        android:textAlignment="center"
+        android:textColor="#8E44AD"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="186dp"
+        android:layout_height="63dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="23dp"
+        android:layout_marginBottom="470dp"
+        android:text="@string/My_Name_Text"
+        android:textAlignment="center"
+        android:textColor="#34495E"
+        android:textSize="25sp"
+        android:textStyle="italic"/>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="123dp"
+        android:layout_height="81dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="353dp"
+        android:text="Supported and Promoted By"
+        android:textAlignment="center"
+        android:textColor="#8E44AD"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="165dp"
+        android:layout_height="59dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="374dp"
+        android:text="@string/Guidance_by_Text"
+        android:textAlignment="center"
+        android:textColor="#34495E"
+        android:textSize="25sp"
+        android:textAllCaps="true"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="125dp"
+        android:layout_height="69dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="253dp"
+        android:text=" Administered By"
+        android:textAlignment="center"
+        android:textColor="#8E44AD"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="191dp"
+        android:layout_height="56dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="19dp"
+        android:layout_marginBottom="264dp"
+        android:text="Biplab Sir"
+        android:textAlignment="center"
+        android:textColor="#34495E"
+        android:textSize="25sp"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="135dp"
+        android:layout_height="49dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="144dp"
+        android:text=" Open-Source"
+        android:textAlignment="center"
+        android:textColor="#8E44AD"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="191dp"
+        android:layout_height="56dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="142dp"
+        android:text="@string/Github_link_Text"
+        android:textAlignment="center"
+        android:textColor="#34495E"
+        android:textSize="25sp"
+        android:textStyle="italic" />
 </RelativeLayout>
